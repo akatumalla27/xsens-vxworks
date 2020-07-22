@@ -14,7 +14,10 @@
 
 #include "xsmessage.h"
 #include <stdlib.h>
-#include <memory.h>		// memset
+#include <msys_e.h>
+#include <memLib.h>
+
+//#include <memory.h>		// memset
 #include "xsbusid.h"
 #include "xsdataformat.h"
 #include <stdio.h>

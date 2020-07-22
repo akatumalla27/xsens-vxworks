@@ -20,7 +20,8 @@
 #	include <sys/ioctl.h>	// ioctl
 #	include <fcntl.h>		// open, O_RDWR
 #	include <string.h>		// strcpy
-#	include <sys/param.h>
+#   include <time.h>
+//#	include <sys/param.h>
 #	include <sys/stat.h>
 #	include <stdarg.h>
 #	include <stdlib.h>
@@ -189,14 +190,14 @@ FILE* openFile(const struct XsString* filename, const struct XsString* mode)
 	(void)XsString_copyToWCharArray(filename, filenameW, XS_MAX_FILENAME_LENGTH);
 	(void)XsString_copyToWCharArray(mode, modeW, 16);
 
-	__try
-	{
-		return _wfopen(filenameW, modeW);
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-		return NULL;
-	}
+//	try
+//	{
+//		return _wfopen(filenameW, modeW);
+//	}
+//	catch(EXCEPTION_EXECUTE_HANDLER)
+//	{
+//		return NULL;
+//	}
 #else
 	return fopen(filename->m_data, mode->m_data);
 #endif

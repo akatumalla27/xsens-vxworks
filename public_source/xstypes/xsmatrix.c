@@ -23,8 +23,8 @@
 
 //lint -e123 -e40 -e522  the INC_ALLOC and INC_ALLOC(L) definitions confuse PCLint
 
-XsAtomicInt XSTYPES_DLL_API XsMatrix_allocCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsMatrix_ functions have allocated memory
-XsAtomicInt XSTYPES_DLL_API XsMatrix_freeCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsMatrix_ functions have freed memory
+//XsAtomicInt XSTYPES_DLL_API XsMatrix_allocCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsMatrix_ functions have allocated memory
+//XsAtomicInt XSTYPES_DLL_API XsMatrix_freeCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsMatrix_ functions have freed memory
 
 #ifdef XSENS_DEBUG
 #define INC_ALLOC()		(void)XsAtomicInt_preIncrement(&XsMatrix_allocCount)

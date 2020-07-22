@@ -44,14 +44,14 @@ void XSTYPES_DLL_API xsNameThisThread(const char* threadName)
 	info.szName = threadName;
 	info.dwThreadID = dwThreadID;
 	info.dwFlags = 0;
-
-	__try
-	{
-		RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(ULONG_PTR), (ULONG_PTR*)&info );
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-	}
+//
+//	__try
+//	{
+//		RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(ULONG_PTR), (ULONG_PTR*)&info );
+//	}
+//	__except(EXCEPTION_EXECUTE_HANDLER)
+//	{
+//	}
 }
 #else
 /*! \brief Set the name of the current thread to \a threadName

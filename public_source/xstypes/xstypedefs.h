@@ -69,17 +69,17 @@ inline const char *toString(XsDataFlags s)
 }
 #else
 // define BOOL, TRUE and FALSE
-#ifndef BOOL
-typedef int BOOL;
-#endif
-
-#ifndef TRUE
-#define TRUE (1)
-#endif
-
-#ifndef FALSE
-#define FALSE (0)
-#endif
+//#ifndef BOOL
+//typedef int BOOL;
+//#endif
+//
+//#ifndef TRUE
+//#define TRUE (1)
+//#endif
+//
+//#ifndef FALSE
+//#define FALSE (0)
+//#endif
 #endif // __cplusplus
 
 #define XS_ENUM_TO_STR_CASE(value) case value: return #value;

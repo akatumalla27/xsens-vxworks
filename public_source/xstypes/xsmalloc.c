@@ -18,7 +18,7 @@
 
 #include "xsmalloc.h"
 #if !(defined __ICCARM__) && !(defined _ADI_COMPILER) && !defined(__APPLE__) && !defined(__CRCC__) && !(defined(__arm__) && defined(__ARMCC_VERSION))
-#include <malloc.h>
+#include "malloc.h"
 #endif
 #include <stdlib.h>
 

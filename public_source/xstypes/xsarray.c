@@ -18,8 +18,8 @@
 #include <string.h>
 
 #ifndef XSENS_NO_ALLOC_TRACKING
-XsAtomicInt XSTYPES_DLL_API XsArray_allocCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsArray_ functions have allocated memory
-XsAtomicInt XSTYPES_DLL_API XsArray_freeCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsArray_ functions have freed memory
+//XsAtomicInt XSTYPES_DLL_API XsArray_allocCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsArray_ functions have allocated memory
+//XsAtomicInt XSTYPES_DLL_API XsArray_freeCount = XSATOMICINT_INITIALIZER;	//!< The number of times XsArray_ functions have freed memory
 #define INC_ALLOC()		(void)XsAtomicInt_preIncrement(&XsArray_allocCount)
 #define INC_FREE()		(void)XsAtomicInt_preIncrement(&XsArray_freeCount)
 #else
@@ -59,7 +59,7 @@ void XsArray_construct(void* thisPtr, XsArrayDescriptor const* const descriptor,
 	{
 		// init to size
 		*((void**) &thisArray->m_data) = malloc(thisArray->m_size*elemSize(thisArray));
-		INC_ALLOC();
+		//INC_ALLOC();
 
 		// init the configurations
 		if (src)
@@ -117,7 +117,7 @@ void XsArray_destruct(void* thisPtr)
 			for (i=0; i<thisArray->m_reserved; ++i)
 				thisArray->m_descriptor->itemDestruct(elemAt(thisArray->m_data, i));
 		free((void*) thisArray->m_data);
-		INC_FREE();
+		//INC_FREE();
 	}
 	// init to 0
 	*((void**) &thisArray->m_data) = 0;
@@ -238,7 +238,7 @@ void XsArray_reserve(void* thisPtr, XsSize count)
 
 	// init to size
 	*((void**) &tmp.m_data) = malloc(tmp.m_reserved*elemSize(thisArray));
-	INC_ALLOC();
+	//INC_ALLOC();
 
 	if (thisArray->m_descriptor->itemConstruct)
 		for (i=0; i<tmp.m_reserved; ++i)

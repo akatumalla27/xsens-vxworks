@@ -14,11 +14,11 @@
 
 #ifndef XSSTRING_H
 #define XSSTRING_H
-
+#include <types/vxTypes.h>
 #include "xstypesconfig.h"
 #include "xsarray.h"
 #ifndef XSENS_NO_WCHAR
-#include <wchar.h>
+//#include <wchar.h>
 #endif // XSENS_NO_WCHAR
 #include <string.h>
 

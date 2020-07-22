@@ -16,7 +16,8 @@
 #include "xstime.h"
 #include "xstimestamp.h"
 #include <stdio.h>
-#include <wchar.h>
+#include <vxworks.h>
+//#include <wchar.h>
 
 #ifdef _WIN32
 #	include <windows.h>
@@ -24,7 +25,8 @@
 #else
 #	include <errno.h>
 #	include <unistd.h>
-#   include <sys/time.h>
+#   include <time.h>
+//#   include <sys/time.h>
 #	include <pthread.h>
 #	include <string.h>
 #endif

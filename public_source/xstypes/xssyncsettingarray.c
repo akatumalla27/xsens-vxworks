@@ -14,7 +14,8 @@
 
 #include "xssyncsettingarray.h"
 #include "xssyncsetting.h"
-#include <memory.h>
+#include <msys_e.h>
+//#include <memory.h>
 #include <string.h>
 
 /*! \struct XsSyncSettingArray

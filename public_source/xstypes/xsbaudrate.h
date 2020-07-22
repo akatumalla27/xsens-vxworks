@@ -18,7 +18,7 @@
 #ifdef _WIN32
 #	include <windows.h>
 #else
-#	include <termios.h>
+#	include "termios.h"
 #	ifndef	B460800
 #		undef	B230400
 #		define	B230400	0010003

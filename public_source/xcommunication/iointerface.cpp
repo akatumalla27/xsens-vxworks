@@ -34,7 +34,9 @@
 #	include <sys/ioctl.h>	// ioctl
 #	include <fcntl.h>		// open, O_RDWR
 #	include <string.h>		// strcpy
-#	include <sys/param.h>
+#   include <vxworks.h>
+
+//#	include <sys/param.h>
 #	include <stdarg.h>
 #else
 #	include <winbase.h>

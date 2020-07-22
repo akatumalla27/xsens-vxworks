@@ -26,13 +26,14 @@
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <sys/time.h>
+#include <time.h>
+//#include <sys/time.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 #define SOCKET int32_t
 #define SOCKET_ERROR -1
 #define INVALID_SOCKET ((int32_t)-1)
-
+#define _POSIX_C_SOURCE 199309L
 /* capture the fact that windows has a specific closesocket function */
 static int closesocket(SOCKET s)
 {
@@ -95,10 +96,10 @@ static void getRemoteHostAddress(const struct sockaddr_storage *remote, XsString
 			src = &(((struct sockaddr_in*)remote)->sin_addr);
 			length = INET_ADDRSTRLEN;
 			break;
-		case AF_INET6:
-			src = &(((struct sockaddr_in6*)remote)->sin6_addr);
-			length = INET6_ADDRSTRLEN;
-			break;
+//		case AF_INET6:
+//			src = &(((struct sockaddr_in6*)remote)->sin6_addr);
+//			length = INET6_ADDRSTRLEN;
+//			break;
 	}
 	XsString_resize(address, length);
 	if (inet_ntop(remote->ss_family, src, address->m_data, length) == NULL)
@@ -426,7 +427,8 @@ int XsSocket_select(XsSocket* thisp, int mstimeout, int *canRead, int *canWrite)
 	fd_set readfd;
 	fd_set writefd;
 	fd_set errorfd;
-	struct timeval timeout;
+	struct timespec timeout;
+	//struct timeval timeout;
 	int rv;
 	FD_ZERO(&readfd);
 	FD_ZERO(&writefd);
@@ -441,7 +443,9 @@ int XsSocket_select(XsSocket* thisp, int mstimeout, int *canRead, int *canWrite)
 		*canWrite = 0;
 
 	timeout.tv_sec = mstimeout/1000;
-	timeout.tv_usec = (mstimeout%1000) * 1000;
+	timeout.tv_nsec = (mstimeout%1000) * 1000;
+
+	//timeout.tv_usec = (mstimeout%1000) * 1000;
 
 	rv = select(FD_SETSIZE, (canRead ? &readfd : NULL),
 				(canWrite ? &writefd : NULL),
@@ -948,11 +952,11 @@ XsResultValue XsSocket_bind(XsSocket* thisp, const XsString* hostname, uint16_t 
 	}
 	else
 	{
-		struct sockaddr_in6 *sin6 = (struct sockaddr_in6*)&s;
-		sin6->sin6_family = AF_INET6;
-		sin6->sin6_port = htons(port);
-		sin6->sin6_addr = in6addr_any;
-		addrlen = sizeof(*sin6);
+//		struct sockaddr_in6 *sin6 = (struct sockaddr_in6*)&s;
+//		sin6->sin6_family = AF_INET6;
+//		sin6->sin6_port = htons(port);
+//		sin6->sin6_addr = in6addr_any;
+//		addrlen = sizeof(*sin6);
 	}
 
 	rv = bind(thisp->d->m_sd, (struct sockaddr*)&s, addrlen);
